@@ -3,13 +3,13 @@ import Nav from "../nav"
 
 const Main = ({children, router}) => {
     return (
-        <main className="flex flex-col md:flex-row mx-auto max-w-full min-h-screen pt-12 px-4 bg-gray-200">
+        <main className="flex flex-col max-w-full min-h-screen px-8 py-8 mx-auto bg-white md:flex-row">
             <Head>
-                <title>Hajira Maryam Mirza's personal page</title>
+                <title>Hajira Maryam</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Nav path={router.asPath}/>
-            <div className="w-full md:w-4/5 mx-4">
+            <div className="w-full pt-8 md:pt-0 md:w-4/5 md:mx-4">
                 {children}
             </div>
             {/* Footer */}

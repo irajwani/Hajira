@@ -3,14 +3,14 @@ const POSTS = [
 ];
 
 export default () => (
-    <div className="flex w-full items-center">
+    <>
         {POSTS.map(({title, publication, date, link}) => (
-            <div className='p-4 rounded-md border-gray-400'>
-            <a href={link} className='divide-y-2 divide-solid divide-gray-400'>
-                <h3 className='text-2xl italic pb-4'>{title}</h3>
-                <p className="pt-4 text-gray-500 font-thin">{publication}, {date}</p>
-            </a>
+            <div className='p-4 border-gray-400 rounded-md'>
+                <a href={link} className='space-x-2 group'>
+                    <span className='pb-4 italic text-gray-700 text-md group-hover:text-pink-600'>{title}</span>
+                    <span className="font-thin text-gray-500">{publication}, {date}</span>
+                </a>
             </div> 
         ))}
-    </div>
+    </>
 )

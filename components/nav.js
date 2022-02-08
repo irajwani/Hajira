@@ -1,33 +1,33 @@
 import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 
-import { MenuAlt3Icon } from '@heroicons/react/solid'
+import { MenuAlt3Icon } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 
 import { useRouter } from 'next/router'
 
 const LINKS = [
     {title: 'About', link: '/'},
-    {title: 'Posts', link: '/posts'}, 
+    // {title: 'Posts', link: '/posts'}, 
     {title: 'Publications', link: '/publications'},
-    {title: 'Research', link: '/research'},
+    // {title: 'Research', link: '/research'},
     {title: 'Videos', link: '/videos'},
     {title: 'Photo Stories', link: '/photos'}
 ];
 const SOCIALS = [
     // {title: 'Insta', image: 'instagram.png'},
-    {title: 'LinkedIn', image: 'linkedin.png'},
-    {title: 'Twitter', image: 'twitter.png'},
+    { title: 'LinkedIn', image: 'linkedin.svg', url: 'https://www.linkedin.com/in/hajiramaryam/'},
+    { title: 'Twitter', image: 'twitter.svg', url: 'https://twitter.com/hajiramirza'},
 ]
 
-const FooterItem = ({image, title, url, key}) => (
+const FooterItem = ({image, url, key}) => (
     <a
     href={url}
     key={key} 
-    className='flex flex-col cursor-pointer group space-y-4'
+    className='flex flex-col transition duration-300 cursor-pointer hover:opacity-40'
     >
-        <img src={`/${image}`} className="w-12 h-12 group-hover:scale-125 transition-transform duration-500"/>
-        <p className="opacity-0 group-hover:opacity-100 text-left">{title}</p>
+        <img src={`/${image}`} className="w-8 h-8"/>
+        {/* <p className="text-left opacity-0 group-hover:opacity-100">{title}</p> */}
     </a>
 )
 
@@ -37,16 +37,16 @@ function Nav() {
 
     const toggleMenu = () => toggleIsVisible(!isVisible)
 
-    const renderMenu = (isHidden = true) => {
+    const renderMenu = () => {
         return (
-            <ul className={`${isHidden && "hidden"} md:flex flex-col justify-between space-y-3`}>
+            <ul className="flex-col justify-between hidden space-y-3 md:flex">
                 {LINKS.map((link) => {
                     const isCurrentPage = router.route === link.link;
                     return (
-                        <li className="hover:scale-y-125 transition duration-500">
+                        <li>
                             <a 
                             onClick={() => router.push(`${link.link}`)} 
-                            className={`text-xs p-2 rounded-lg md:text-xl hover:text-yellow-800 ${ isCurrentPage ? 'text-yellow-800 bg-gray-200' : ' '} cursor-pointer`}>
+                            className={`text-s hover:text-gray-400 ${ isCurrentPage ? 'border-b-2 border-pink-600' : ' '} cursor-pointer`}>
                                 {link.title}
                             </a>
                         </li>  
@@ -56,13 +56,13 @@ function Nav() {
     }
 
     const renderFooter = () => (
-        <div className="hidden md:flex space-x-4">
-            {SOCIALS.map(({title, image}) => <FooterItem key={title} title={title} image={image}/>)}
+        <div className="flex flex-row pt-4 space-x-2">
+            {SOCIALS.map(({title, image, url}) => <FooterItem key={title} image={image} url={url}/>)}
         </div>
     )
 
     const renderMobileMenu = () => {
-        const iconStyle = "h-8 w-8";
+        const iconStyle = "h-8 w-8 opacity-50";
         return (
         <div className="md:hidden">
             {isVisible ? <ChevronDownIcon onClick={toggleMenu} className={iconStyle} /> : <MenuAlt3Icon onClick={toggleMenu} className={iconStyle} />}
@@ -72,9 +72,13 @@ function Nav() {
                     {LINKS.map((link) => {
                         const isCurrentPage = router.route === link.link;
                         return (
-                            <li>
+                            <li key={link}>
                                 <a
-                                className="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                onClick={() => {
+                                    toggleIsVisible(false);
+                                    router.push(`${link.link}`);
+                                }}
+                                    className={`block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-md ${ isCurrentPage ? 'bg-pink-600 text-white' : ' '} dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 focus:text-pink-600 hover:text-pink-600 focus:outline-none focus:shadow-outline`}
                                 >{link.title}</a>
                             </li>
                         )
@@ -87,18 +91,20 @@ function Nav() {
 
     // console.log(router.route);
     return (
-        <nav className='flex w-full p-8 justify-between md:w-1/5 md:flex-col md:justify-start md:items-start md:mb-8 md:px-4 md:py-0 md:space-y-8 md:border-r border-gray-400'>
-                <div className="hidden md:flex">
-                    <img alt='Profile Picture' className="md:w-200 md:h-200 rounded-md" src={'/profile.jpeg'} />
-                </div>
-                <div>
-                    <a href="/" className="md:text-xl font-semibold hover:text-yellow-800 transition duration-300">Hajira Maryam</a>
-                </div>
-                {renderMenu(true)}
+        <nav className='flex justify-between w-full md:w-1/5 md:flex-col md:flex-none md:justify-start md:items-start md:mb-8 md:px-4 md:py-0 md:space-y-8'>
+        
+            <div>
+                <a href="/" className="text-2xl font-normal text-gray-700 transition duration-300 hover:text-gray-400 md:text-2xl ">Hajira Maryam</a>
                 {renderFooter()}
-                {renderMobileMenu()}
+            </div>
+            {renderMenu()}
+            {renderMobileMenu()}
         </nav>
     )    
 }
 
 export default Nav;
+
+{/* <div className="hidden md:flex">
+                <img alt='Profile Picture' className="rounded-md md:w-200 md:h-200" src={'/profile.jpeg'} />
+            </div> */}

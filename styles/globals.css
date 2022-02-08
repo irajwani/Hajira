@@ -15,5 +15,31 @@
         font-family: 'Quicksand';
         src: url('../fonts/Quicksand.ttf') format('ttf');
     }
+
+    label {
+        @apply text-xs font-light;
+    }
+
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="search"],
+    [type="tel"],
+    [type="time"],
+    [type="week"],
+    [multiple],
+    textarea,
+    select {
+        @apply rounded-sm ring-1 ring-gray-200 focus:border-pink-600 focus:ring-pink-600;
+    }
+    [type="checkbox"],
+    [type="radio"] {
+        @apply text-pink-600 border-gray-300 rounded-sm focus:ring-pink-600;
+    }
     
 }

@@ -14,9 +14,9 @@ const PHOTOS = [
 export default () => {
     return (
         <div>
-            <div className="inline-grid justify-items-center grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="inline-grid grid-cols-1 gap-2 justify-items-center md:grid-cols-3">
                 {PHOTOS.map(({url, colspan, rowspan}) => (
-                    <img src={`/${url}`} alt="" className={`rounded-lg col-span-${colspan} row-span-${rowspan}`} />
+                    <img src={`/${url}`} alt="" className={`col-span-${colspan} row-span-${rowspan}`} />
                 ))}
             </div>
         </div>
