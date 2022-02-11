@@ -15,6 +15,10 @@
         font-family: 'Quicksand';
         src: url('../fonts/Quicksand.ttf') format('ttf');
     }
+    @font-face {
+        font-family: 'PTSerif';
+        src: url('../fonts/PTSerif.ttf') format('ttf');
+    }
 
     label {
         @apply text-xs font-light;

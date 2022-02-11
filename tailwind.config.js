@@ -9,7 +9,8 @@ module.exports = {
         desktop: '1248px'
       },
       fontFamily: {
-        montserrat: 'Quicksand'
+        montserrat: 'Montserrat',
+        serif: 'PTSerif'
       },
       colors: {
         maroon: '#7d0e2d',
