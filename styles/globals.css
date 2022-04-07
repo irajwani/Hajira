@@ -39,11 +39,43 @@
     [multiple],
     textarea,
     select {
-        @apply rounded-sm ring-1 ring-gray-200 focus:border-pink-600 focus:ring-pink-600;
+        @apply rounded-sm ring-1 ring-gray-800 focus:border-brown focus:ring-brown;
     }
     [type="checkbox"],
     [type="radio"] {
-        @apply text-pink-600 border-gray-300 rounded-sm focus:ring-pink-600;
+        @apply border-gray-300 rounded-sm text-brown focus:ring-brown;
     }
     
 }
+
+/* @layer components {
+    .strong {
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -0.125rem;
+            left: -0.5rem;
+            right: -0.5rem;
+            height: 0.75rem;
+            z-index: -1;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/664131/underline.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+
+    p > strong {
+        font-weight: 400;  
+
+        &::after {
+            bottom: -0.2rem;
+            height: 0.5rem;
+            left: -0.25rem;
+            right: -0.25rem;
+        }
+    }
+} */
+
+

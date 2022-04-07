@@ -3,7 +3,7 @@ import Nav from "../nav"
 
 const Main = ({children, router}) => {
     return (
-        <main className="flex flex-col max-w-full min-h-screen px-8 py-8 mx-auto font-serif bg-white md:flex-row">
+        <main className="flex flex-col max-w-full min-h-screen p-8 mx-auto font-serif bg-paper md:flex-row">
             <Head>
                 <title>Hajira Maryam</title>
                 <link rel="icon" href="/favicon.ico" />

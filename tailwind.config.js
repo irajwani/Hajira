@@ -16,11 +16,16 @@ module.exports = {
         maroon: '#7d0e2d',
         gold: '#f5dd05',
         white: '#ffffff',
+        paper: '#FFEBCD',
+        brown: '#A0522D'
       },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
+  plugins: [
+    require('@tailwindcss/typography'), require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp')
+  ],
 }

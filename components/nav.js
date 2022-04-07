@@ -46,7 +46,7 @@ function Nav() {
                         <li>
                             <a 
                             onClick={() => router.push(`${link.link}`)} 
-                            className={`text-s hover:text-gray-400 ${ isCurrentPage ? 'border-b-2 border-pink-600' : ' '} cursor-pointer`}>
+                            className={`text-s hover:text-gray-400 ${ isCurrentPage ? 'border-b-2 border-brown' : ' '} cursor-pointer`}>
                                 {link.title}
                             </a>
                         </li>  
@@ -62,13 +62,13 @@ function Nav() {
     )
 
     const renderMobileMenu = () => {
-        const iconStyle = "h-8 w-8 opacity-50";
+        const iconStyle = "h-8 w-8 opacity-80";
         return (
         <div className="md:hidden">
             {isVisible ? <ChevronDownIcon onClick={toggleMenu} className={iconStyle} /> : <MenuAlt3Icon onClick={toggleMenu} className={iconStyle} />}
             {isVisible && 
             <div className="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg">
-                <ul className="px-2 py-2 bg-white rounded-md shadow">
+                <ul className="px-2 py-2 rounded-md shadow bg-paper">
                     {LINKS.map((link) => {
                         const isCurrentPage = router.route === link.link;
                         return (
@@ -78,8 +78,12 @@ function Nav() {
                                     toggleIsVisible(false);
                                     router.push(`${link.link}`);
                                 }}
-                                    className={`block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-md ${ isCurrentPage ? 'bg-pink-600 text-white' : ' '} dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 focus:text-pink-600 hover:text-pink-600 focus:outline-none focus:shadow-outline`}
-                                >{link.title}</a>
+                                    className={`block px-4 py-2 mt-2 md:mt-0 focus:outline-none focus:shadow-outline`}
+                                >
+                                    <p className={`text-sm font-semibold bg-transparent ${isCurrentPage ? 'text-brown' : ' '} focus:text-brown hover:text-brown`}>
+                                        {link.title}
+                                    </p>
+                                </a>
                             </li>
                         )
                     })}

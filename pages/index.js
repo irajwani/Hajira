@@ -1,15 +1,27 @@
 import { useState } from 'react';
 import { ArrowDownIcon } from '@heroicons/react/solid'
+import about from '../text/about';
 
 export default function Home() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-  const [submitted, setSubmitted] = useState(false)
 
+  const [showMore, toggleShowMore] = useState(false)
+
+  const renderAbout = () => (
+    <div>
+      <p className={`text-xl font-light text-left ${!showMore && 'line-clamp-3'} lg:text-2xl`}>
+        {about}
+      </p>
+      <span>
+        <a className="font-light cursor-pointer text-brown" onClick={() => toggleShowMore(!showMore)}>
+          {showMore ? 'Show less' : 'Read more'}
+        </a>
+      </span>
+    </div>
+  )
+  
   const renderDownloadResumeButton = () => (
     <a 
-    className="flex items-center w-32 text-xl font-light border border-gray-600 rounded-sm lg:text-2xl hover:bg-pink-600 hover:border-0 hover:text-white"
+    className="flex items-center w-32 text-xl font-light border border-gray-800 rounded-sm lg:text-2xl hover:bg-brown hover:text-white"
     href="/cv.pdf"
     alt="download resume button"
     target="_blank"
@@ -37,10 +49,6 @@ export default function Home() {
     console.log('Response received')
     if (res.status === 200) {
       console.log('Response succeeded!')
-      setSubmitted(true)
-      setName('')
-      setEmail('')
-      // setBody('')
     }
     
   }
@@ -68,12 +76,14 @@ export default function Home() {
           placeholder="Message" id="message" name="message" required/>
         </div>
 
-        <div className="sm:pt-4">
-          <button className="self-center w-48 p-2 text-white bg-gray-400 rounded-sm hover:bg-pink-600"
+        <div className="flex flex-row space-x-8 sm:pt-4">
+          <button className="self-center w-48 p-2 text-xl font-light border border-gray-800 rounded-sm hover:bg-brown hover:text-white"
           type="submit"
           >
             Send
           </button>
+
+          {renderDownloadResumeButton()}
         </div>
         
       </form>
@@ -82,17 +92,11 @@ export default function Home() {
   
   return (
     <>
-    <div className='flex flex-col md:flex-row'>
+    <div className='flex flex-col'>
       
-      <img src={'cover.png'} className='w-full md:w-1/2 md:max-h-96 max-w-48'/>
-      <div className="flex flex-col justify-between px-4 mt-4 space-y-4 text-gray-600 md:mt-0">
-        <p className="text-xl font-light text-left lg:text-2xl">
-        Hi There! I am a journalist based in Istanbul.
-        I have an MA in South Asian Area Studies from the University of Oxford.
-        My publications focus on Animal conservation, contemporary politics, labor laws, women's rights and venture capital in developing economies. 
-        </p>
-
-        {renderDownloadResumeButton()}
+      <img src={'cover.jpg'} className='w-full md:w-1/2 md:max-h-96 max-w-48'/>
+      <div className="flex flex-col justify-between mt-4 space-y-4 text-gray-800">
+        {renderAbout()}
       </div>
       
     </div>
@@ -100,4 +104,3 @@ export default function Home() {
     </>
   )
 }
-
