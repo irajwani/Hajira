@@ -94,7 +94,7 @@ export default function Home() {
     <>
     <div className='flex flex-col'>
       
-      <img src={'cover.jpg'} className='w-full md:w-1/2 md:max-h-96 max-w-48'/>
+      <img src={'cover.jpg'} className='w-full rounded-lg md:w-1/2 lg:w-1/3 max-w-48'/>
       <div className="flex flex-col justify-between mt-4 space-y-4 text-gray-800">
         {renderAbout()}
       </div>

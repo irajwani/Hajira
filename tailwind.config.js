@@ -16,7 +16,7 @@ module.exports = {
         maroon: '#7d0e2d',
         gold: '#f5dd05',
         white: '#ffffff',
-        paper: '#FFEBCD',
+        paper: 'rgb(255 255 255)',
         brown: '#A0522D'
       },
     },
